@@ -14,6 +14,8 @@ public class Main{
   static Random r = new Random();
   static int min = 5;
   static int max = 700;
+  static int swap;
+  static BubbleSort bubbleT = new BubbleSort();
 
   public Main() {
     prepGui();
@@ -77,9 +79,18 @@ public class Main{
     bubble.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent evt) {
+        for(int i = 0; i < (randArray.length - 1); i++) {
+          for(int j = 0; j < (randArray.length - i -1); j++) {
+            if(randArray[j] > randArray[j + 1]) {
+              swap = randArray[j];
+              randArray[j] = randArray[j + 1];
+              randArray[j + 1] = swap;
+            }
+          }
+        }
+        System.out.println("\nSorted Array\n");
         
-
-        
+        bubbleT.start();
       }
     });
   }
