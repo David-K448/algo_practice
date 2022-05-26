@@ -1,1 +1,1 @@
-# algo_practice
+# algo_practice Sorting algorithm visualizer 
