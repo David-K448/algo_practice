@@ -1,5 +1,5 @@
 import java.awt.*;
-import javax.swing.*;
+import javax.swing.*; 
 
 public class Frame extends JFrame {
 
@@ -8,7 +8,7 @@ public class Frame extends JFrame {
 
   public Frame() {
     this.setTitle("Algo Vizualization");
-    this.getContentPane().setPreferredSize(new Dimension(1200, 600));
+    this.getContentPane().setPreferredSize(new Dimension(1125, 600));
     this.getContentPane().add(panel1);
     //this.getContentPane().add(menuPanel);
     this.pack();

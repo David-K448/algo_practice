@@ -6,13 +6,14 @@ import java.util.Random;
 public class BubbleSort extends JPanel {
 
   private Random rand = new Random();
-  private int[] array = new int[100];
+  private int[] array = new int[75];
   private int arryIndex;
   private int compIndex;
   private boolean isRunning = false;
 
   JButton start = new JButton("Start");
   JButton reset = new JButton("Reset Sim");
+  JButton home = new JButton("Home");
 
   public void setArray() {
     for(int i = 0; i < array.length; i++) {
@@ -118,8 +119,8 @@ public class BubbleSort extends JPanel {
         g.setColor(Color.red);
       }
 
-      g.drawRect(i*15, 600 - array[i], 14, array[i]);
-      g.fillRect(i*15, 600 - array[i], 14, array[i]);
+      g.drawRect(i*15, 600 - array[i], 9, array[i]);
+      g.fillRect(i*15, 600 - array[i], 9, array[i]);
     }
   }
 }
