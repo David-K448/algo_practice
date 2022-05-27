@@ -57,13 +57,24 @@ public class BubbleSort extends JPanel {
           repaint();
       }
     });
+
+    home.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          CardPane c = new CardPane();
+          Frame f = new Frame();
+          c.card.show(f.menuPane, "menuPane");
+      }
+    });
+
     this.add(bubBox);
     this.add(start);
     this.add(reset);
+    this.add(home);
   }
 
 
-  private void BubbleSortAnimate() {
+  public void BubbleSortAnimate() {
     compIndex = 0;
 
     Timer timer = new Timer(1, new ActionListener(){
