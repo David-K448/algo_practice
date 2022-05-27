@@ -14,10 +14,13 @@ public class BubbleSort extends JPanel {
   JButton start = new JButton("Start");
   JButton reset = new JButton("Reset Sim");
   JButton home = new JButton("Home");
+  
+  JCheckBox bubBox = new JCheckBox("Bubble Sort", true);
+
 
   public void setArray() {
     for(int i = 0; i < array.length; i++) {
-      this.array[i] = rand.nextInt(510) + 40;
+      this.array[i] = rand.nextInt(400) + 40;
     }
   }
 
@@ -35,7 +38,9 @@ public class BubbleSort extends JPanel {
       public void actionPerformed(ActionEvent e) {
         try{
           isRunning = true;
-          BubbleSortAnimate();
+          if(bubBox.isSelected()){
+            BubbleSortAnimate();
+          }
         } catch (Exception ex) {
           ex.printStackTrace();
         }
@@ -52,6 +57,7 @@ public class BubbleSort extends JPanel {
           repaint();
       }
     });
+    this.add(bubBox);
     this.add(start);
     this.add(reset);
   }
@@ -68,7 +74,18 @@ public class BubbleSort extends JPanel {
           ((Timer)e.getSource()).stop();
         } else {
           if(isRunning == true) {
-            sortOne();
+            if(array[compIndex] > array[compIndex + 1]) {
+              int temp = array[compIndex];
+              array[compIndex] = array[compIndex + 1];
+              array[compIndex + 1] = temp;
+            }
+            if ((compIndex + 1) >= (array.length - arryIndex - 1)) {
+              arryIndex++;
+              compIndex = 0;
+            }
+            else{
+              compIndex++;
+            }
           }
         }
         repaint();
@@ -76,7 +93,6 @@ public class BubbleSort extends JPanel {
     });
     timer.start();
   }
-
 
   public boolean isSorted(){
     for(int i = 0; i < array.length - 1; i++) {
@@ -87,28 +103,10 @@ public class BubbleSort extends JPanel {
     return true;
   }
 
-  private void sortOne() {
-    if(array[compIndex] > array[compIndex + 1]) {
-      int temp = array[compIndex];
-      array[compIndex] = array[compIndex + 1];
-      array[compIndex + 1] = temp;
-    }
-    if ((compIndex + 1) >= (array.length - arryIndex - 1)) {
-      arryIndex++;
-      compIndex = 0;
-    }
-    else{
-      compIndex++;
-    }
-  }
-
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     this.setBackground(Color.DARK_GRAY);
-
     draw(g);
-
-    
   }
 
   public void draw(Graphics g) {
