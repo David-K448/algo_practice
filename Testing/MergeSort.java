@@ -1,5 +1,6 @@
 package Testing;
 
+import java.util.Random;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -14,24 +15,64 @@ public class MergeSort extends JPanel implements ActionListener {
 
   private JTextField textField;
 
+  private Random rand = new Random();
+  Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+  private int[] array = new int[dim.width/14];
+  private int arryIndex;
+  private int compIndex;
+  boolean isRunning = false;
+
+  JButton start = new JButton("Start");
+  JButton reset = new JButton("Reset Sim");
+  
+  public void setArray() {
+    for(int i = 0; i < array.length; i++) {
+      this.array[i] = rand.nextInt(400) + 40;
+    }
+  }
+
+  public int[] getArray() {
+    return this.array;
+  }
+// constructor 
   public MergeSort() {
-     init();
+     setArray();
+     this.arryIndex = 0;
+     this.compIndex = Integer.MAX_VALUE;
+ 
+     start.addActionListener(new ActionListener() {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+         try{
+          isRunning = true;
+          MergeSortAnimate();
+         } catch (Exception ex) {
+           ex.printStackTrace();
+         }
+       }
+     });
+
+     reset.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+          setArray();
+          compIndex = Integer.MAX_VALUE;
+          arryIndex = 0;
+          isRunning = false;
+          repaint();
+      }
+    });
+    this.add(start);
+    this.add(reset);
   }
 
-  private void init() {
-     setLayout(new GridLayout(1, 2));
-     JLabel userLabel = new JLabel("Your Name : ");
-     textField = new JTextField();
-     textField.addActionListener(this);
+  private void MergeSortAnimate() {
 
-     add(userLabel);
-     add(textField);
   }
+
+  
 
   public void actionPerformed(ActionEvent e) {
-     if (textField.getDocument().getLength() > 0)
-        JOptionPane.showMessageDialog(null,
-              "Your Name is : " + textField.getText(), "User\'s Name : ",
-              JOptionPane.QUESTION_MESSAGE);
+     
   }
 }
